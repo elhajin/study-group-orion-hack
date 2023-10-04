@@ -59,4 +59,3 @@ interface Uni_Pair_V2 {
 ## notes :
 
 > make sure in to past your **rpcUrl** for ethereum mainnet in `.env` file. see .envExample.
-> change the variable `_balances` in `ERC20` from openzeppelin to be **public** or **internal**.
