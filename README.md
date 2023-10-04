@@ -40,7 +40,7 @@ interface Uni_Pair_V2 {
 - clone this repo :
 
 ```sh
-    git clone
+    git clone git@github.com:elhajin/study-group.git
 ```
 
 - Install dependency:
