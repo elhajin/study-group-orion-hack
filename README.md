@@ -1,3 +1,5 @@
+**_if you wanna Reapplicate the hack your self, clone the repo with `starting` branch_**
+
 ## Reference you need :
 
 **uniswap v2 usdt/weth pool** : 0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852 </br>

